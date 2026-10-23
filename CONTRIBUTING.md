@@ -1,48 +1,58 @@
 # 🤝 Contributing to Local CodeReview AI
 
-기여를 환영합니다! 이 문서는 프로젝트에 기여하는 방법을 안내합니다.
+First off, thank you for considering contributing to **Local CodeReview AI**! It's people like you that make it a great tool for developers.
 
-## 🐛 버그 리포트
+---
 
-1. [Issues](https://github.com/jeonghoemoon/local-codereview-ai/issues)에서 이미 보고된 버그인지 확인해주세요.
-2. 새 이슈를 만들 때 다음 정보를 포함해주세요:
-   - 운영체제 및 Python 버전
-   - Ollama 버전 및 사용 모델
-   - 재현 단계
-   - 예상 동작 vs 실제 동작
+## 🐛 Reporting Bugs
 
-## 💡 기능 제안
+Before creating bug reports, please check the [existing issues](https://github.com/jeonghoemoon/local-codereview-ai/issues) to avoid duplicates. When filing an issue, please include:
+- Your OS and Python version
+- Ollama version and the LLM model used (e.g., `codellama`, `llama3.1`)
+- Steps to reproduce the issue
+- Expected vs. actual behavior
 
-새로운 기능 아이디어가 있다면 Issue를 열어 논의해주세요.
+---
 
-## 🔧 개발 환경 설정
+## 💡 Suggesting Enhancements
 
-```bash
-# 저장소 포크 및 클론
-git clone https://github.com/jeonghoemoon/local-codereview-ai.git
-cd local-codereview-ai
+Feature requests and design ideas are very welcome! Please open an issue to discuss your proposal before starting implementation.
 
-# 개발 의존성 설치
-pip install -e ".[dev]"
+---
 
-# 테스트 실행
-pytest
-```
+## 🔧 Development Setup
 
-## 📝 Pull Request 가이드라인
+1. Fork and clone the repository:
+   ```bash
+   git clone https://github.com/jeonghoemoon/local-codereview-ai.git
+   cd local-codereview-ai
+   ```
 
-1. `main` 브랜치에서 새 브랜치를 만들어주세요.
-2. 변경사항에 대한 테스트를 추가해주세요.
-3. 모든 테스트가 통과하는지 확인해주세요.
-4. 커밋 메시지는 명확하게 작성해주세요.
-5. PR 설명에 변경사항을 상세히 기술해주세요.
+2. Create a virtual environment and install development dependencies:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+   pip install -e ".[dev]"
+   ```
 
-## 📋 코드 스타일
+3. Run the test suite:
+   ```bash
+   pytest -v
+   ```
 
-- PEP 8 스타일 가이드를 따릅니다.
-- Type hints를 사용해주세요.
-- Docstring은 Google 스타일을 따릅니다.
+---
 
-## 📜 라이선스
+## 📝 Pull Request Guidelines
 
-기여하신 코드는 [MIT 라이선스](LICENSE)에 따라 배포됩니다.
+1. Create a descriptive feature branch from `main` (`git checkout -b feature/my-new-feature`).
+2. Add unit tests for any new functionality in `tests/`.
+3. Ensure all existing tests pass (`pytest`).
+4. Follow PEP 8 guidelines and include type hints where appropriate.
+5. Write clear, semantic commit messages.
+6. Open a Pull Request with a clear explanation of the changes made.
+
+---
+
+## 📜 License
+
+By contributing, you agree that your contributions will be licensed under the project's [MIT License](LICENSE).

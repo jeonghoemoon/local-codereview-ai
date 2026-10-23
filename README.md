@@ -1,124 +1,167 @@
 # 🔍 Local CodeReview AI
 
+[![CI](https://github.com/jeonghoemoon/local-codereview-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/jeonghoemoon/local-codereview-ai/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Ollama](https://img.shields.io/badge/Ollama-Local%20LLM-green.svg)](https://ollama.ai/)
 
-> **로컬 LLM 기반 AI 코드 리뷰 도구** — 인터넷 없이, API 키 없이, 완전히 로컬에서 동작하는 AI 코드 리뷰어
+> **Privacy-first, offline AI code review CLI** powered by Ollama. Analyze code quality, detect security vulnerabilities, inspect coding conventions, and review Git diffs — 100% locally with zero cloud data leaks.
 
-## ✨ 주요 기능
+---
 
-- 🔄 **Git Diff 기반 코드 리뷰** — 변경된 코드만 분석하여 효율적인 리뷰
-- 📄 **전체 파일 코드 리뷰** — 파일 전체를 분석하여 종합적인 피드백
-- 🔒 **보안 취약점 탐지** — SQL Injection, XSS 등 보안 이슈 자동 탐지
-- 🎨 **코드 스타일/컨벤션 체크** — PEP8, 네이밍 컨벤션 등 코드 품질 검사
-- 📝 **Markdown 리포트 생성** — 리뷰 결과를 깔끔한 Markdown 파일로 저장
-- 💻 **CLI 인터페이스** — 간편한 커맨드라인 인터페이스
+## ✨ Features
 
-## 🚀 빠른 시작
+- 🔄 **Git Diff Review** — Review staged changes or compare against branches/commits (`HEAD~1`) with contextual focus.
+- 📄 **Full File Review** — Comprehensive analysis of code structure, performance, readability, and potential bugs.
+- 🔒 **Hybrid Security Scanner** — Fast regex-based static pattern matching (CWE-mapped) followed by in-depth LLM vulnerability analysis.
+- 🎨 **Style & Convention Checks** — Detects naming violations, missing docstrings, bare excepts, and formatting issues.
+- 📝 **Markdown Reports** — Export structured review reports directly to `.md` files for PR comments and documentation.
+- 🌐 **Multilingual Output** — Get reviews in English, Korean (`ko`), Japanese (`ja`), Chinese (`zh`), and more.
+- 💻 **Rich CLI Experience** — Beautiful terminal UI with streaming responses and progress panels.
 
-### 사전 요구사항
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
 
 1. **Python 3.9+**
-2. **Ollama** 설치 및 실행
+2. **Ollama** installed and running ([Download Ollama](https://ollama.ai))
 
-   ```bash
-   # Ollama 설치 (https://ollama.ai)
-   # 모델 다운로드
-   ollama pull codellama
-   ```
-
-### 설치
+Pull your preferred coding model (e.g., `codellama`, `llama3.1`, or `qwen2.5-coder`):
 
 ```bash
-# 저장소 클론
+ollama pull codellama
+```
+
+### Installation
+
+Clone the repository and install it in editable mode:
+
+```bash
 git clone https://github.com/jeonghoemoon/local-codereview-ai.git
 cd local-codereview-ai
 
-# 의존성 설치
+# Install package
 pip install -e .
+
+# (Optional) Install development dependencies for testing
+pip install -e ".[dev]"
 ```
 
-### 사용법
+---
 
+## 📖 Usage Examples
+
+Try reviewing the provided sample file (`examples/sample_code.py`):
+
+### 1. Full Code Review
 ```bash
-# 전체 파일 리뷰
-codereview review path/to/file.py
-
-# Git diff 리뷰 (스테이징된 변경사항)
-codereview diff --staged
-
-# Git diff 리뷰 (특정 커밋 비교)
-codereview diff HEAD~1
-
-# 보안 취약점 탐지
-codereview security path/to/file.py
-
-# 코드 스타일 체크
-codereview style path/to/file.py
-
-# 전체 분석 (리뷰 + 보안 + 스타일)
-codereview full path/to/file.py
-
-# 리포트를 Markdown 파일로 저장
-codereview review path/to/file.py --output report.md
+codereview review examples/sample_code.py
 ```
 
-## 📋 명령어 상세
+### 2. Git Diff Review (Staged Changes)
+Stage your changes with git and run:
+```bash
+git add .
+codereview diff --staged
+```
 
-| 명령어 | 설명 | 예시 |
-|--------|------|------|
-| `review` | 전체 파일 코드 리뷰 | `codereview review main.py` |
-| `diff` | Git diff 기반 리뷰 | `codereview diff --staged` |
-| `security` | 보안 취약점 탐지 | `codereview security app.py` |
-| `style` | 코드 스타일 체크 | `codereview style utils.py` |
-| `full` | 전체 분석 | `codereview full server.py` |
+### 3. Review Changes Against a Commit / Branch
+```bash
+codereview diff HEAD~1
+```
 
-### 공통 옵션
+### 4. Security Vulnerability Scan
+```bash
+codereview security examples/sample_code.py
+```
 
-| 옵션 | 설명 | 기본값 |
-|------|------|--------|
-| `--model` | 사용할 Ollama 모델 | `codellama` |
-| `--output` | 리포트 출력 파일 경로 | (콘솔 출력) |
-| `--lang` | 리뷰 결과 언어 | `ko` (한국어) |
+### 5. Code Style & Convention Inspection
+```bash
+codereview style examples/sample_code.py
+```
 
-## 🏗️ 프로젝트 구조
+### 6. Full Analysis (Review + Security + Style) with Markdown Export
+```bash
+codereview full examples/sample_code.py --output report.md
+```
+
+---
+
+## 🛠️ CLI Commands & Options
+
+### Commands
+
+| Command | Description | Example |
+|---|---|---|
+| `review` | Comprehensive code quality & bug review | `codereview review app.py` |
+| `diff` | Git diff analysis (staged or revision) | `codereview diff --staged` |
+| `security` | Security vulnerability inspection (Static + AI) | `codereview security server.py` |
+| `style` | Code style, convention & docstring checks | `codereview style utils.py` |
+| `full` | Complete analysis (Review + Security + Style) | `codereview full main.py` |
+
+### Common Options
+
+| Option | Short | Description | Default |
+|---|---|---|---|
+| `--model` | `-m` | Ollama model name to use | `codellama` |
+| `--output` | `-o` | File path to export Markdown report | `None` (stdout only) |
+| `--lang` | `-l` | Output language (`en`, `ko`, `ja`, `zh`) | `ko` |
+
+---
+
+## 🏗️ Project Architecture
 
 ```
 local-codereview-ai/
+├── .github/workflows/
+│   └── ci.yml               # GitHub Actions CI multi-version matrix
 ├── src/
 │   └── codereview/
-│       ├── __init__.py
-│       ├── cli.py          # CLI 인터페이스
-│       ├── reviewer.py     # 코드 리뷰 엔진
-│       ├── diff_analyzer.py # Git diff 분석
-│       ├── security.py     # 보안 취약점 탐지
-│       ├── style_checker.py # 스타일 체크
-│       ├── report.py       # Markdown 리포트 생성
-│       ├── llm_client.py   # Ollama LLM 클라이언트
-│       └── prompts.py      # AI 프롬프트 템플릿
+│       ├── __init__.py      # Package metadata (v0.1.0)
+│       ├── cli.py           # Click-based CLI entry point
+│       ├── reviewer.py      # Core review engine & language detection
+│       ├── diff_analyzer.py # Git diff extraction & patch review
+│       ├── security.py      # Pattern-based CWE rules & security analyzer
+│       ├── style_checker.py # Code convention & docstring scanner
+│       ├── report.py        # Markdown report generator
+│       ├── llm_client.py    # Ollama client with streaming support
+│       └── prompts.py       # Prompt engineering templates
 ├── tests/
-│   ├── __init__.py
-│   ├── test_reviewer.py
 │   ├── test_security.py
-│   └── test_style_checker.py
+│   ├── test_style_checker.py
+│   └── test_report_and_reviewer.py
 ├── examples/
-│   └── sample_code.py      # 테스트용 샘플 코드
-├── pyproject.toml
-├── README.md
-├── LICENSE
-└── CONTRIBUTING.md
+│   └── sample_code.py       # Sample file with intentional flaws for testing
+├── pyproject.toml           # PEP 621 packaging configuration
+├── README.md                # Project documentation
+├── LICENSE                  # MIT License
+└── CONTRIBUTING.md          # Contribution guidelines
 ```
 
-## 🤝 기여하기
+---
 
-기여를 환영합니다! [CONTRIBUTING.md](CONTRIBUTING.md)를 참고해주세요.
+## 🧪 Running Tests
 
-## 📄 라이선스
+Run the test suite using `pytest` or Python's standard `unittest`:
 
-이 프로젝트는 [MIT 라이선스](LICENSE)를 따릅니다.
+```bash
+# Using pytest
+pytest -v
 
-## 🙏 감사의 글
+# Or using unittest directly
+python -m unittest discover -s tests
+```
 
-- [Ollama](https://ollama.ai/) — 로컬 LLM 런타임
-- [Code Llama](https://ai.meta.com/blog/code-llama-large-language-model-coding/) — Meta의 코드 특화 LLM
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please check out [CONTRIBUTING.md](CONTRIBUTING.md) for details on code style, testing, and pull requests.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
