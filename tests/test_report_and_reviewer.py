@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 import unittest
 from unittest.mock import MagicMock, patch
 from codereview.report import generate_report
@@ -29,7 +31,8 @@ class TestReportAndReviewer(unittest.TestCase):
         mock_client_class.return_value = mock_instance
 
         reviewer = CodeReviewer(model="codellama", lang="ko")
-        result = reviewer.review_file("examples/sample_code.py")
+        sample_path = Path(__file__).resolve().parent.parent / "examples" / "sample_code.py"
+        result = reviewer.review_file(str(sample_path))
 
         self.assertEqual(result, "Mocked Review Output")
         self.assertTrue(mock_instance.chat.called)
