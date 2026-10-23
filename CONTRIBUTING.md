@@ -4,7 +4,7 @@
 
 ## 🐛 버그 리포트
 
-1. [Issues](https://github.com/YOUR_USERNAME/local-codereview-ai/issues)에서 이미 보고된 버그인지 확인해주세요.
+1. [Issues](https://github.com/jeonghoemoon/local-codereview-ai/issues)에서 이미 보고된 버그인지 확인해주세요.
 2. 새 이슈를 만들 때 다음 정보를 포함해주세요:
    - 운영체제 및 Python 버전
    - Ollama 버전 및 사용 모델
@@ -19,7 +19,7 @@
 
 ```bash
 # 저장소 포크 및 클론
-git clone https://github.com/YOUR_USERNAME/local-codereview-ai.git
+git clone https://github.com/jeonghoemoon/local-codereview-ai.git
 cd local-codereview-ai
 
 # 개발 의존성 설치

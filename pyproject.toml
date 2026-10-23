@@ -40,9 +40,9 @@ dev = [
 codereview = "codereview.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/YOUR_USERNAME/local-codereview-ai"
-Repository = "https://github.com/YOUR_USERNAME/local-codereview-ai"
-Issues = "https://github.com/YOUR_USERNAME/local-codereview-ai/issues"
+Homepage = "https://github.com/jeonghoemoon/local-codereview-ai"
+Repository = "https://github.com/jeonghoemoon/local-codereview-ai"
+Issues = "https://github.com/jeonghoemoon/local-codereview-ai/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -32,7 +32,7 @@
 
 ```bash
 # 저장소 클론
-git clone https://github.com/YOUR_USERNAME/local-codereview-ai.git
+git clone https://github.com/jeonghoemoon/local-codereview-ai.git
 cd local-codereview-ai
 
 # 의존성 설치
